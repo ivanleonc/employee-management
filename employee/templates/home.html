@@ -1,0 +1,48 @@
+{% extends "./base.html" %} 
+
+{% block title %} Gestion Empleados {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Agregar Nuevo</h5>
+              <form action="/insertEmployee/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtCode" name="txtCode" class="form-control" placeholder="Codigo" minlength="1" maxlength="10" required></input>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Nombre" maxlength="20" required></input>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in employees%}
+                    <tr>
+                        <td>{{e.code}}</td>
+                        <td>{{e.name}}</td>
+                        <td><a href="editEmployee/{{e.code}}" class="btn btn-secondary"><i class="bi bi-trash"></i> Editar</a></td>
+                        <td><a href="deleteEmployee/{{e.code}}" class="btn btn-danger">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock body %}

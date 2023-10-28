@@ -1,0 +1,21 @@
+{% extends "./base.html" %} 
+
+{% block title %} Gestion Empleados {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form action="{% url 'edit_employee' employee.code %}" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="txtCode" name="txtCode" value="{{ employee.code }}" class="form-control" placeholder="Codigo" minlength="1" maxlength="10" readonly required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="txtName" name="txtName" value="{{ employee.name }}" class="form-control" placeholder="Nombre" maxlength="20" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                <button type="submit" class="btn btn-secondary btn-block text-white">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}
