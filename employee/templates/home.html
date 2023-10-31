@@ -1,26 +1,21 @@
 {% extends "./base.html" %} 
 
-{% block title %} Gestion Empleados {% endblock %}
+{% block title %} Gestion Empleados - iDzIvan {% endblock %}
+
 {% block body %}
 <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4" style="display:none">
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Agregar Nuevo</h5>
-              <form action="/insertEmployee/" method="POST">{% csrf_token %}
-                <div class="form-group">
-                    <input type="text" id="txtCode" name="txtCode" class="form-control" placeholder="Codigo" minlength="1" maxlength="10" required></input>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Nombre" maxlength="20" required></input>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
-                </div>
-            </form>
+              <h5 class="card-title">Agregar Empleado</h5>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeModal">
+                <i class="fas fa-plus"></i> Agregar
+              </button>
             </div>
-          </div>
+        </div>
     </div>
+
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
         <div class="table-responsive">
             <table class="table table-striped">
@@ -32,17 +27,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for e in employees%}
-                    <tr>
-                        <td>{{e.code}}</td>
-                        <td>{{e.name}}</td>
-                        <td><a href="editEmployee/{{e.code}}" class="btn btn-secondary"><i class="bi bi-trash"></i> Editar</a></td>
-                        <td><a href="deleteEmployee/{{e.code}}" class="btn btn-danger">Borrar</a></td>
-                    </tr>
+                    {% for e in employees %}
+                        <tr>
+                            <td>{{ e.code }}</td>
+                            <td>{{ e.name }}</td>
+                            <td><a href="editEmployee/{{ e.code }}" class="btn btn-secondary"><i class="fas fa-edit"></i></a></td>
+                            <td><a href="deleteEmployee/{{ e.code }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEmployeeModalLabel">Agregar Empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/insertEmployee/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="txtCode">Código:</label>
+                        <input type="text" id="txtCode" name="txtCode" class="form-control" placeholder="Código" minlength="1" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtName">Nombre:</label>
+                        <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Nombre" maxlength="20" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block text-white"><i class="fas fa-save"></i> Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock body %}

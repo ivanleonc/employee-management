@@ -1,0 +1,36 @@
+/* Estilo para la tarjeta de agregar nuevo empleado */
+.card {
+    margin-top: 20px;
+}
+
+/* Estilo para el formulario de agregar nuevo empleado */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Estilo para la tabla de empleados */
+.table {
+    margin-top: 20px;
+}
+
+/* Estilo para los botones de opciones */
+.btn-secondary,
+.btn-danger {
+    margin-right: 5px;
+}
+
+/* Estilo para el título de la página */
+h5.card-title {
+    color: #007bff; /* Azul brillante, puedes cambiar el color según tus preferencias */
+}
+
+/* Estilo para el botón Guardar */
+.btn-success {
+    background-color: #28a745; /* Verde, puedes cambiar el color según tus preferencias */
+    border-color: #28a745;
+}
+
+/* Cambiar el color del texto del botón Guardar a blanco */
+.btn-success.text-white {
+    color: #fff;
+}
